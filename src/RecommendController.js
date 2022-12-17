@@ -2,6 +2,7 @@ const OutputView = require('./views/OutputView.js');
 const InputView = require('./views/InputView.js');
 const Validation = require('./Validation.js');
 const Recommend = require('./Recommend.js');
+const { Console } = require('@woowacourse/mission-utils');
 const inputErrorHandler = require('./utils/inputErrorHandler.js');
 
 class RecommendController {
@@ -70,11 +71,23 @@ class RecommendController {
 
   #recommendMenu() {
     this.#recommend.recommendMenu();
+
     const recommendedMenuCount = this.#recommend.getMenus()[0].length;
     if (recommendedMenuCount < 5) {
       this.#recommendCategoryPhase();
       return;
     }
+
+    this.#endPhase();
+  }
+
+  #endPhase() {
+    const categories = this.#recommend.getCategories();
+    const coachNames = this.#recommend.getCoachNames();
+    const menus = this.#recommend.getMenus();
+
+    OutputView.printRecommendResult(categories, coachNames, menus);
+    Console.close();
   }
 }
 

@@ -14,16 +14,20 @@ class Recommend {
     this.#menus = [];
   }
 
+  getCoachNames() {
+    return this.#coachNames;
+  }
+
   getMenus() {
     return this.#menus;
   }
 
-  setAntiFood(antiFoodArr) {
-    this.#antiFoods.push(antiFoodArr);
-  }
-
   getCategories() {
     return this.#categories;
+  }
+
+  setAntiFood(antiFoodArr) {
+    this.#antiFoods.push(antiFoodArr);
   }
 
   recommendCategory() {
