@@ -53,7 +53,7 @@ class Recommend {
   recommendMenu() {
     this.#antiFoods.map((antiFoodArr, idx) => {
       while (true) {
-        const latestCategory = this.#categories.length ? [this.#categories.length - 1] : null;
+        const latestCategory = this.#categories[this.#categories.length - 1];
 
         const targetMenus = MENUS[latestCategory].split(', ');
 
