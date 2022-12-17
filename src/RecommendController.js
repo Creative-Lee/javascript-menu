@@ -1,5 +1,6 @@
 const OutputView = require('./views/OutputView.js');
 const InputView = require('./views/InputView.js');
+const Validation = require('./Validation.js');
 const inputErrorHandler = require('./utils/inputErrorHandler.js');
 
 class RecommendController {
@@ -10,7 +11,16 @@ class RecommendController {
   }
 
   #requestCoachName() {
-    InputView.readCoachName((coachName) => {});
+    InputView.readCoachName((coachNames) => {
+      inputErrorHandler(
+        () => this.#nameSavePhase(coachNames),
+        () => this.#requestCoachName()
+      );
+    });
+  }
+
+  #nameSavePhase(coachNames) {
+    Validation.validateCoachNames(coachNames);
   }
 }
 
