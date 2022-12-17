@@ -56,7 +56,16 @@ class RecommendController {
 
     if (remainCoachArr.length) {
       this.#requestAntiFood(remainCoachArr);
+      return;
     }
+
+    this.#recommandCategoryPhase();
+  }
+
+  #recommandCategoryPhase() {
+    this.#recommand.recommandCategory();
+
+    console.log(this.#recommand.getCategories());
   }
 }
 
