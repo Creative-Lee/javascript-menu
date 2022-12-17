@@ -19,7 +19,16 @@ class Validation {
     return 2 <= coachNameArr.length && coachNameArr.length <= 5;
   }
 
-  static validateAntiFood(antiFood) {}
+  static validateAntiFood(antiFood) {
+    const antiFoodArr = antiFood.split(',');
+    if (!Validation.#isValidAntiFoodCount(antiFoodArr)) {
+      throw new Error('[ERROR] 못 먹는 음식은 0개 ~ 2개 만 입력 가능합니다.');
+    }
+  }
+
+  static #isValidAntiFoodCount(antiFoodArr) {
+    return 0 <= antiFoodArr.length && antiFoodArr.length <= 2;
+  }
 }
 
 module.exports = Validation;
