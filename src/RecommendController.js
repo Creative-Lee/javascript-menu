@@ -70,6 +70,11 @@ class RecommendController {
 
   #recommendMenu() {
     this.#recommend.recommendMenu();
+    const recommendedMenuCount = this.#recommend.getMenus()[0].length;
+    if (recommendedMenuCount < 5) {
+      this.#recommendCategoryPhase();
+      return;
+    }
   }
 }
 
