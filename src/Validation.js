@@ -18,6 +18,8 @@ class Validation {
   static #isValidCoachCount(coachNameArr) {
     return 2 <= coachNameArr.length && coachNameArr.length <= 5;
   }
+
+  static validateAntiFood(antiFood) {}
 }
 
 module.exports = Validation;

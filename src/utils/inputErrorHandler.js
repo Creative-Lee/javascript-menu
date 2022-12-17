@@ -1,11 +1,12 @@
 const { Console } = require('@woowacourse/mission-utils');
 
-const inputErrorHandler = (excution, reRequest) => {
+const inputErrorHandler = (validate, input) => {
   try {
-    excution();
+    validate(input);
+    return true;
   } catch ({ message }) {
     Console.print(message);
-    reRequest();
+    return false;
   }
 };
 

@@ -15,17 +15,47 @@ class RecommendController {
 
   #requestCoachName() {
     InputView.readCoachName((coachNames) => {
-      inputErrorHandler(
-        () => this.#nameSavePhase(coachNames),
-        () => this.#requestCoachName()
-      );
+      const isValidInput = inputErrorHandler(Validation.validateCoachNames, coachNames);
+
+      if (!isValidInput) {
+        this.#requestCoachName();
+        return;
+      }
+
+      this.#nameSavePhase(coachNames);
     });
   }
 
   #nameSavePhase(coachNames) {
-    Validation.validateCoachNames(coachNames);
+    const coachNameArr = coachNames.split(',');
 
-    this.#recommand = new Recommend(coachNames.split(','));
+    this.#recommand = new Recommend(coachNameArr);
+
+    this.#requestAntiFood(coachNameArr);
+  }
+
+  #requestAntiFood(coachNameArr) {
+    coachNameArr.forEach((coachName) => {
+      InputView.readAntiFood(coachName, (antiFood) => {
+        const isValidInput = inputErrorHandler(Validation.validateAntiFood, antiFood);
+
+        if (!isValidInput) {
+          this.#requestAntiFood(coachNameArr);
+          return;
+        }
+
+        const remainCoachArr = coachNameArr.slice(1);
+        this.#antiFoodSavePhase(antiFood, remainCoachArr);
+      });
+    });
+  }
+
+  #antiFoodSavePhase(antiFood, remainCoachArr) {
+    console.log(`성공!!!${antiFood}`);
+
+    if (remainCoachArr.length) {
+      this.#requestAntiFood(remainCoachArr);
+    }
   }
 }
 
