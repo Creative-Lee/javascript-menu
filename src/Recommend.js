@@ -53,10 +53,14 @@ class Recommend {
   recommendMenu() {
     this.#antiFoods.map((antiFoodArr, idx) => {
       while (true) {
-        const latestCategory = this.#categories[this.#categories.length - 1];
+        const latestCategory = this.#categories.length ? [this.#categories.length - 1] : null;
+
         const targetMenus = MENUS[latestCategory].split(', ');
+
         const targetMenuIdxArr = targetMenus.map((_, idx) => idx);
-        const recommendedMenu = targetMenus[Random.shuffle(targetMenuIdxArr)[0]];
+        const randomNum = Random.shuffle(targetMenuIdxArr)[0];
+
+        const recommendedMenu = targetMenus[randomNum];
 
         if (antiFoodArr.includes(recommendedMenu)) continue;
         if (this.#menus[idx] && this.#menus[idx].includes(recommendedMenu)) continue;
