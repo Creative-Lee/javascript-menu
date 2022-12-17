@@ -20,7 +20,7 @@ class Recommend {
     return this.#categories;
   }
 
-  recommandCategory() {
+  recommendCategory() {
     while (true) {
       const randomCategoryNumber = Random.pickNumberInRange(1, 5);
       const recommendedCategory = CATEGORIES[randomCategoryNumber];
@@ -39,6 +39,8 @@ class Recommend {
 
     return duplicateCount < 2;
   }
+
+  recommendFood() {}
 }
 
 module.exports = Recommend;

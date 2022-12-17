@@ -5,7 +5,7 @@ const Recommend = require('./Recommend.js');
 const inputErrorHandler = require('./utils/inputErrorHandler.js');
 
 class RecommendController {
-  #recommand;
+  #recommend;
 
   play() {
     OutputView.printRecommendStartMsg();
@@ -29,7 +29,7 @@ class RecommendController {
   #nameSavePhase(coachNames) {
     const coachNameArr = coachNames.split(',');
 
-    this.#recommand = new Recommend(coachNameArr);
+    this.#recommend = new Recommend(coachNameArr);
 
     this.#requestAntiFood(coachNameArr);
   }
@@ -52,20 +52,18 @@ class RecommendController {
 
   #antiFoodSavePhase(antiFood, remainCoachArr) {
     const antiFoodArr = antiFood.split(',');
-    this.#recommand.setAntiFood(antiFoodArr);
+    this.#recommend.setAntiFood(antiFoodArr);
 
     if (remainCoachArr.length) {
       this.#requestAntiFood(remainCoachArr);
       return;
     }
 
-    this.#recommandCategoryPhase();
+    this.#recommendCategoryPhase();
   }
 
-  #recommandCategoryPhase() {
-    this.#recommand.recommandCategory();
-
-    console.log(this.#recommand.getCategories());
+  #recommendCategoryPhase() {
+    this.#recommend.recommendCategory();
   }
 }
 
