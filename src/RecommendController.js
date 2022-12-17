@@ -64,6 +64,12 @@ class RecommendController {
 
   #recommendCategoryPhase() {
     this.#recommend.recommendCategory();
+
+    this.#recommendMenu();
+  }
+
+  #recommendMenu() {
+    this.#recommend.recommendMenu();
   }
 }
 
