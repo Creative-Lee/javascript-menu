@@ -51,7 +51,8 @@ class RecommendController {
   }
 
   #antiFoodSavePhase(antiFood, remainCoachArr) {
-    console.log(`성공!!!${antiFood}`);
+    const antiFoodArr = antiFood.split(',');
+    this.#recommand.setAntiFood(antiFoodArr);
 
     if (remainCoachArr.length) {
       this.#requestAntiFood(remainCoachArr);
