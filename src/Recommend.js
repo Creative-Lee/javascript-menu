@@ -58,8 +58,9 @@ class Recommend {
         const targetMenus = MENUS[latestCategory].split(', ');
 
         const targetMenuIdxArr = targetMenus.map((_, idx) => idx);
-        const randomNum = Random.shuffle(targetMenuIdxArr)[0];
+        const shuffledArr = Random.shuffle(targetMenuIdxArr).map((num) => num - 1);
 
+        const randomNum = shuffledArr[0];
         const recommendedMenu = targetMenus[randomNum];
 
         if (antiFoodArr.includes(recommendedMenu)) continue;
@@ -67,10 +68,13 @@ class Recommend {
 
         if (this.#menus[idx]) {
           this.#menus[idx].push(recommendedMenu);
+          console.log(this.#menus, idx, shuffledArr);
         } else {
           this.#menus.push([recommendedMenu]);
+          console.log(this.#menus, idx, shuffledArr);
         }
-        return;
+
+        break;
       }
     });
   }
